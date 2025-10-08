@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
+      # id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
 
     steps:
@@ -55,17 +55,18 @@ jobs:
         with:
           name: python-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_538286821F034EFB8E633E5395F977EE }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C4E9D98509FE4040AFBB3C68CF129AF6 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4E0E6ECFEAE64FA49E2DC28D86640643 }}
+      # - name: Login to Azure
+      #   uses: azure/login@v2
+      #   with:
+      #     client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_538286821F034EFB8E633E5395F977EE }}
+      #     tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C4E9D98509FE4040AFBB3C68CF129AF6 }}
+      #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4E0E6ECFEAE64FA49E2DC28D86640643 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'azclimate1'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           slot-name: 'Production'
           
