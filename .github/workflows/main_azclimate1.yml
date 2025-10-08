@@ -63,7 +63,7 @@ jobs:
       #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4E0E6ECFEAE64FA49E2DC28D86640643 }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'ws15azclimate-apexfachanefgabm'
