@@ -68,5 +68,10 @@ jobs:
           app-name: 'ws15azclimateeurope'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
-          # slot-name: 'Production'   # Not needed since we have no slot
+          
+      - name: Set startup command in Azure
+        uses: azure/cli@v1
+        with:
+          inlineScript: | 
+            az webapp config set --name ws15azclimateeurope --resource-group Erik_workshop11 --startup-file "python climateserver.py"
           
