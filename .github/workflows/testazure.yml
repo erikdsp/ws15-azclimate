@@ -1,0 +1,20 @@
+name: Minimal Azure WebApp Deploy Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create minimal test file
+        run: |
+          mkdir site
+          echo "<h1>Test Deploy</h1>" > site/index.html
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'ws15azclimate'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: site
