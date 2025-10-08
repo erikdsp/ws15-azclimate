@@ -65,7 +65,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'ws15azclimate'
+          app-name: 'ws15azclimateeurope'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
           # slot-name: 'Production'   # Not needed since we have no slot
